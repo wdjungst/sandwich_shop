@@ -1,0 +1,7 @@
+.toast {
+  top: 0 !important;
+}
+
+.toast > .bam {
+  background-color: 'red' !important;
+}
