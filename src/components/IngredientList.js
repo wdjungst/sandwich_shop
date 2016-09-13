@@ -19,14 +19,14 @@ const hasUpArrow = (index) => {
     return true
 }
 
-const IngreedientList = ({ ingreedients, deleteHandler, moveUp, moveDown }) => (
+const IngredientList = ({ ingredients, deleteHandler, moveUp, moveDown }) => (
   <div>
     <ul className="text-center collection">
-      { ingreedients.map( (ingreedient, index) => {
-        let last = ingreedients.length - 1;
+      { ingredients.map( (ingredient, index) => {
+        let last = ingredients.length - 1;
         let hasUp = hasUpArrow(index)
         let hasDown = hasDownArrow(index, last)
-        let { type, id } = ingreedient;
+        let { type, id } = ingredient;
           return (
             <li
               key={id}
@@ -48,4 +48,4 @@ const IngreedientList = ({ ingreedients, deleteHandler, moveUp, moveDown }) => (
   </div>
 );
 
-export default IngreedientList;
+export default IngredientList;

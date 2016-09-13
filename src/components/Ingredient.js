@@ -5,7 +5,7 @@ import Tomato from '../images/Tomato.png';
 import Mustard from '../images/Mustard.png';
 import Bacon from '../images/Bacon.png';
 
-class Ingreedient extends React.Component {
+class Ingredient extends React.Component {
   constructor(props) {
     super(props);
     this.Bread = Bread;
@@ -42,4 +42,4 @@ class Ingreedient extends React.Component {
   }
 }
 
-export default Ingreedient;
+export default Ingredient;

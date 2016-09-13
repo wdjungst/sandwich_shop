@@ -1,53 +1,53 @@
 import React from 'react';
 import ButtonPanel from './ButtonPanel';
-import Ingreedient from './Ingreedient';
-import IngreedientList from './IngreedientList';
+import Ingredient from './Ingredient';
+import IngredientList from './IngredientList';
 import Materialize from 'react-materialize';
 
 class SandwhichShop extends React.Component {
   constructor(props) {
     super(props);
-    this.addIngreedient = this.addIngreedient.bind(this);
-    this.removeIngreedient = this.removeIngreedient.bind(this);
+    this.addIngredient = this.addIngredient.bind(this);
+    this.removeIngredient = this.removeIngredient.bind(this);
     this.expand = this.expand.bind(this);
     this.moveUp = this.moveUp.bind(this);
     this.moveDown = this.moveDown.bind(this);
-    this.state= { ingreedients: [], expand: false };
+    this.state= { ingredients: [], expand: false };
   }
 
-  addIngreedient(type) {
-    let id = this.state.ingreedients.length;
+  addIngredient(type) {
+    let id = this.state.ingredients.length;
 
-    let ingreedient = { id, type }
+    let ingredient = { id, type }
     window.Materialize.toast(type, 1500, 'rounded');
     if (id >= 3 && id % 3 === 0)
       window.Materialize.toast('COMBO BREAKER', 3000, 'bam')
-    this.setState({ ingreedients: [ingreedient, ...this.state.ingreedients] });
+    this.setState({ ingredients: [ingredient, ...this.state.ingredients] });
   }
 
-  removeIngreedient(id) {
-    let ingreedients = this.state.ingreedients.filter( i => i.id !== id );
-    this.setState({ ingreedients });
+  removeIngredient(id) {
+    let ingredients = this.state.ingredients.filter( i => i.id !== id );
+    this.setState({ ingredients });
   }
 
   moveUp(id) {
-    let ingreedients = [...this.state.ingreedients];
-    let indexA = ingreedients.findIndex( i => i.id === id );
+    let ingredients = [...this.state.ingredients];
+    let indexA = ingredients.findIndex( i => i.id === id );
     let indexB = indexA - 1;
-    let tmp = ingreedients[indexA];
-    ingreedients[indexA] = ingreedients[indexB];
-    ingreedients[indexB] = tmp;
-    this.setState({ ingreedients });
+    let tmp = ingredients[indexA];
+    ingredients[indexA] = ingredients[indexB];
+    ingredients[indexB] = tmp;
+    this.setState({ ingredients });
   }
 
   moveDown(id) {
-    let ingreedients = [...this.state.ingreedients];
-    let indexA = ingreedients.findIndex( i => i.id === id );
+    let ingredients = [...this.state.ingredients];
+    let indexA = ingredients.findIndex( i => i.id === id );
     let indexB = indexA + 1;
-    let tmp = ingreedients[indexA];
-    ingreedients[indexA] = ingreedients[indexB];
-    ingreedients[indexB] = tmp;
-    this.setState({ ingreedients });
+    let tmp = ingredients[indexA];
+    ingredients[indexA] = ingredients[indexB];
+    ingredients[indexB] = tmp;
+    this.setState({ ingredients });
   }
 
   expand() {
@@ -55,19 +55,19 @@ class SandwhichShop extends React.Component {
   }
 
   render() {
-    let ingreedients = this.state.ingreedients.map( (ingreedient, index) => {
-      return (<Ingreedient {...ingreedient} index={index} expand={this.state.expand} />);
+    let ingredients = this.state.ingredients.map( (ingredient, index) => {
+      return (<Ingredient {...ingredient} index={index} expand={this.state.expand} />);
     });
 
     return (
       <div>
-        <ButtonPanel clickHandler={this.addIngreedient} />
+        <ButtonPanel clickHandler={this.addIngredient} />
         <hr />
         <div className="row">
           <div className="col s12 m4 offset-m1">
-            <IngreedientList
-              ingreedients={this.state.ingreedients}
-              deleteHandler={this.removeIngreedient}
+            <IngredientList
+              ingredients={this.state.ingredients}
+              deleteHandler={this.removeIngredient}
               moveUp={this.moveUp}
               moveDown={this.moveDown}
             />
@@ -79,7 +79,7 @@ class SandwhichShop extends React.Component {
             </button>
           </div>
           <div className="col s12 m6">
-            { ingreedients }
+            { ingredients }
           </div>
         </div>
       </div>
